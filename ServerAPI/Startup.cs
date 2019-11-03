@@ -10,6 +10,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Swashbuckle.AspNetCore.Swagger;
 
 namespace ServerAPI
 {
@@ -25,10 +26,19 @@ namespace ServerAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            // Добавить сервис свагера
+            services.AddSwaggerGen(options=>
+            {
+                options.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo
+                {
+                    Version="1.0.0",
+                    Title="Music Vault API",
+                    Description="BackEnd path of Music Vault web site"
+                });
+            });
+
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
                 .AddJsonOptions(options=> { options.SerializerSettings.Formatting = Newtonsoft.Json.Formatting.Indented; });
-            //swagger
-
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -44,6 +54,14 @@ namespace ServerAPI
                 app.UseHsts();
             }
 
+            app.UseSwagger();
+
+            app.UseSwaggerUI(x=>
+            {
+                x.SwaggerEndpoint("/swagger/v1/swagger.json", "Mysic Vault API");
+                x.RoutePrefix = String.Empty;
+            });
+            
             app.UseHttpsRedirection();
             app.UseMvc();
         }
