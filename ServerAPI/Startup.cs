@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -10,6 +12,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Microsoft.IdentityModel.Tokens;
+using ServerAPI.Options;
 using Swashbuckle.AspNetCore.Swagger;
 
 namespace ServerAPI
@@ -26,19 +30,47 @@ namespace ServerAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            // дергаем настройки из аппсетинга 
+            services.Configure<JwtOptions>(Configuration.GetSection("Jwt"));
+
             // Добавить сервис свагера
-            services.AddSwaggerGen(options=>
+            services.AddSwaggerGen(options =>
             {
                 options.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo
                 {
-                    Version="1.0.0",
-                    Title="Music Vault API",
-                    Description="BackEnd path of Music Vault web site"
+                    Version = "1.0.0",
+                    Title = "Music Vault API",
+                    Description = "BackEnd path of Music Vault web site"
                 });
             });
 
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
-                .AddJsonOptions(options=> { options.SerializerSettings.Formatting = Newtonsoft.Json.Formatting.Indented; });
+            //добавляем токены JWT
+            services.AddAuthentication(x =>
+            {
+                x.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+                x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+                x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+            })
+                .AddJwtBearer(options =>
+            {
+                options.SaveToken = true;
+                options.RequireHttpsMetadata = true;
+                options.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuer = true,
+                    ValidateAudience = true,
+                    ValidateLifetime = true,
+                    ValidateIssuerSigningKey = true,
+                    ValidIssuer = Configuration["Jwt:Issuer"],
+                    ValidAudience = Configuration["Jwt:Audience"],
+                    IssuerSigningKey = new SymmetricSecurityKey(
+                        Encoding.UTF8.GetBytes(Configuration["Jwt:Secret"])),
+                    ClockSkew = TimeSpan.FromSeconds(10) 
+                };
+            });
+
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+                
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -54,14 +86,16 @@ namespace ServerAPI
                 app.UseHsts();
             }
 
+            // добавим CORS
+            app.UseCors(x => x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
+            //свагер
             app.UseSwagger();
-
-            app.UseSwaggerUI(x=>
+            app.UseSwaggerUI(x =>
             {
                 x.SwaggerEndpoint("/swagger/v1/swagger.json", "Mysic Vault API");
                 x.RoutePrefix = String.Empty;
             });
-            
+            app.UseAuthentication();
             app.UseHttpsRedirection();
             app.UseMvc();
         }
