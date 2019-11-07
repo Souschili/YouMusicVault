@@ -23,7 +23,7 @@ namespace ServerAPI.Controllers
             //генератор уникального глобального айди
             //var t = System.Guid.NewGuid().ToString();
             //новый юзер тестовый вариант + randome ID
-            var user = new User { ID = System.Guid.NewGuid().ToString(), Name = "Xoasit" };
+            var user = new User { ID = System.Guid.NewGuid().ToString(), Nickname = "Xoasit" };
             return Ok(user);
         }
         
