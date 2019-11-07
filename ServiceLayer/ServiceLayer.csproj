@@ -4,4 +4,9 @@
     <TargetFramework>netcoreapp2.2</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Remove="Services\NewFile1.txt" />
+    <None Remove="Services\NewFile2.txt" />
+  </ItemGroup>
+
 </Project>

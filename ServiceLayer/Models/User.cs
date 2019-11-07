@@ -16,7 +16,7 @@ namespace ServiceLayer.Models
         /// <summary>
         /// Имя юзера
         /// </summary>
-        public string Name { get; set; }
+        public string Nickname { get; set; }
         /// <summary>
         /// Почтовый адресс
         /// </summary>
