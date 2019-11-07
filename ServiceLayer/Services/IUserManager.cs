@@ -1,7 +1,4 @@
 ﻿using ServiceLayer.Models;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace ServiceLayer.Services
@@ -17,7 +14,9 @@ namespace ServiceLayer.Services
         /// <param name="name"></param>
         /// <returns></returns>
         Task<User> FindUserByNickname(string name);
-        
 
+        //Todo for refresh tokens
+        Task FindRefreshToken(string guid);
+        
     }
 }
