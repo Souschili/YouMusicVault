@@ -17,12 +17,14 @@ namespace ServiceLayer.Models
         /// </summary>
         [Required]
         [MaxLength(50)]
+        [MinLength(5)]
         public string Nickname { get; set; }
         /// <summary>
         /// Почтовый адресс
         /// </summary>
         [Required]
         [MaxLength(30)]
+        [MinLength(5)]
         public string Email { get; set; }
         /// <summary>
         /// Пароль

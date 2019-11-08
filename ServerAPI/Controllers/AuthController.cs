@@ -1,6 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using ServiceLayer.Models;
+using ServiceLayer.Services;
 using System;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace ServerAPI.Controllers
 {
@@ -8,24 +11,28 @@ namespace ServerAPI.Controllers
     [ApiController]
     public class AuthController : ControllerBase
     {
-       
-
-        [HttpGet]
-        public IActionResult Get()
+        private readonly IUserData context;
+        public AuthController(IUserData userData)
         {
-            return Ok(new { Token="my JWT object", Refresh="my refresh token" });
+            this.context = userData;
         }
 
-        // TODO delete this controller it's only for testing
-        [HttpGet("Guid")]
-        public IActionResult Guid()
+      
+        [HttpPost("register")]
+        public async Task<IActionResult> CreateUserAsync([FromBody]User user)
         {
-            //генератор уникального глобального айди
-            //var t = System.Guid.NewGuid().ToString();
-            //новый юзер тестовый вариант + randome ID
-            var user = new User { ID = System.Guid.NewGuid().ToString(), Nickname = "Xoasit" };
-            return Ok(user);
+            //переделать , айди должен автоматом выдаваться
+            if(ModelState.IsValid)
+            {
+                await context.AddUser(user); 
+                return Ok("User added");
+            }
+            //отлов ошибок модели , смотри аннотацию в User
+            var errors = ModelState.Select(x => x.Value.Errors).Where(y => y.Count > 0).ToList();
+            // отдаем список ошибок клиенту если модель не валидна
+            return BadRequest(errors);
+           
         }
-        
+
     }
 }

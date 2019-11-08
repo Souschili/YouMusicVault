@@ -6,14 +6,13 @@ using System.Text;
 
 namespace DataLayer.EF
 {
-    public class ApplicationContext:DbContext
+    public class ApplicationContext : DbContext
     {
-        public DbSet<User> Users { get; set; }
-
-        public ApplicationContext(DbContextOptions<ApplicationContext> options):base(options)
-        {
-            Database.EnsureCreated();
-        }
-
+        public DbSet<User> User {get;set;}
+    public ApplicationContext(DbContextOptions<ApplicationContext> options) : base(options)
+    {
+        Database.EnsureCreated();
     }
+
+}
 }

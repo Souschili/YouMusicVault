@@ -1,16 +1,17 @@
 ﻿using System;
 using System.Text;
+using DataLayer.Data;
+using DataLayer.EF;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using ServerAPI.Options;
-
-
-
+using ServiceLayer.Services;
 
 namespace ServerAPI
 {
@@ -26,10 +27,17 @@ namespace ServerAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
-
             // дергаем настройки из аппсетинга 
             services.Configure<JwtOptions>(Configuration.GetSection("Jwt"));
+            //зависимости
+            services.AddTransient<IUserData, MusicRepository>();
+
+            //Добавляем СУБД
+            services.AddDbContext<ApplicationContext>(options =>
+            {
+                options.UseSqlServer(
+                    Configuration.GetConnectionString("DefaultConnection"), x => x.MigrationsAssembly("ServerAPI"));
+            });
 
             // Добавить сервис свагера
             services.AddSwaggerGen(options =>
