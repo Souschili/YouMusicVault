@@ -12,6 +12,7 @@ namespace ServerAPI.Controllers
     /// Контролер авторизации пользователей
     /// </summary>
     [Route("api/[controller]")]
+    [Produces("application/json")]
     [ApiController]
     public class AuthController : ControllerBase
     {
