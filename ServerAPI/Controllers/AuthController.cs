@@ -58,6 +58,7 @@ namespace ServerAPI.Controllers
         /// </summary>
         /// <returns>Список пользователей</returns>
         [HttpGet("all")]
+        [Produces("application/json")]
         public async Task<ActionResult<List<User>>> All()
         {
             return await userManager.FindAllUsers();
