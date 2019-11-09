@@ -63,5 +63,18 @@ namespace ServerAPI.Controllers
         {
             return await userManager.FindAllUsers();
         }
+
+        /// <summary>
+        /// Получить юзера по нику
+        /// </summary>
+        /// <param name="name">Никнейм пользователя</param>
+        /// <returns></returns>
+        [HttpGet("{name}")]
+        public async Task<ActionResult<User>> GetUserAsync(string name)
+        {
+            var user = await userManager.FindUserByNickname(name);
+            return user;
+        }
+
     }
 }
