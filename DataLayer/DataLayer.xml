@@ -28,5 +28,21 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="T:DataLayer.EF.ApplicationContext">
+            <summary>
+            Класс содержащий таблицы и отвечающий за работу с БД
+            </summary>
+        </member>
+        <member name="P:DataLayer.EF.ApplicationContext.User">
+            <summary>
+            Таблица пользователей приложения
+            </summary>
+        </member>
+        <member name="M:DataLayer.EF.ApplicationContext.#ctor(Microsoft.EntityFrameworkCore.DbContextOptions{DataLayer.EF.ApplicationContext})">
+            <summary>
+            Конструктор класса
+            </summary>
+            <param name="options">дефолтные настройки для передачи в базовый класс</param>
+        </member>
     </members>
 </doc>
