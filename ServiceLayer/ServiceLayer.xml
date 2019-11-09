@@ -59,6 +59,11 @@
             <param name="user">Объект представляющий нового юзера</param>
             <returns>Возращает удачно или нет прошла регистрация</returns>
         </member>
+        <member name="T:ServiceLayer.Services.UserManager">
+            <summary>
+            Класс по работе с пользователями
+            </summary>
+        </member>
         <member name="M:ServiceLayer.Services.UserManager.FindAllUsers">
             <summary>
             Вывести всех пользователей в базе
@@ -69,8 +74,8 @@
             <summary>
             Найти нового юзера по никнейму
             </summary>
-            <param name="name"></param>
-            <returns></returns>
+            <param name="name">Никнейм юзера</param>
+            <returns>Возращает пользователя </returns>
         </member>
         <member name="M:ServiceLayer.Services.UserManager.RegisterUser(ServiceLayer.Models.User)">
             <summary>
