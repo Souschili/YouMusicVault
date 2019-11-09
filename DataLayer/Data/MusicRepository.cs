@@ -1,9 +1,8 @@
 ﻿using DataLayer.EF;
+using Microsoft.EntityFrameworkCore;
 using ServiceLayer.Models;
 using ServiceLayer.Services;
-using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace DataLayer.Data
@@ -39,9 +38,9 @@ namespace DataLayer.Data
         /// Возращает список всех юзеров
         /// </summary>
         /// <returns></returns>
-        public Task<List<User>> GetAll()
+        public async Task<List<User>> GetAll()
         {
-            throw new NotImplementedException();
+            return await context.User.ToListAsync();
         }
 
     }

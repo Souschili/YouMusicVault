@@ -16,9 +16,9 @@ namespace ServerAPI.Controllers
     {
         private readonly IUserManager userManager;
 
-        AuthController(IUserManager manager)
+        public AuthController(IUserManager manager)
         {
-            userManager = manager; 
+            userManager = manager;
         }
 
         /// <summary>
@@ -39,13 +39,16 @@ namespace ServerAPI.Controllers
                 ID = System.Guid.NewGuid().ToString()
             };
 
-            await userManager.RegisterUser(user);
+            var rezult = await userManager.RegisterUser(user);
 
+            if (rezult) return Ok("User added");
+
+            return BadRequest("We cant add user!!");
             #region памятка ошибки валидации
             //отлов ошибок модели , смотри аннотацию в User
-            var errors = ModelState.Select(x => x.Value.Errors).Where(y => y.Count > 0).ToList();
+            //var errors = ModelState.Select(x => x.Value.Errors).Where(y => y.Count > 0).ToList();
             // отдаем список ошибок клиенту если модель не валидна
-            return BadRequest(errors);
+            //return BadRequest(errors);
             #endregion
         }
 
