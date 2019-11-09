@@ -31,6 +31,7 @@ namespace ServerAPI
             services.Configure<JwtOptions>(Configuration.GetSection("Jwt"));
             //зависимости
             services.AddTransient<IUserData, MusicRepository>();
+            services.AddScoped<IUserManager,UserManager>();
 
             //Добавляем СУБД
             services.AddDbContext<ApplicationContext>(options =>

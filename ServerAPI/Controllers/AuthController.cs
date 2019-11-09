@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using ServiceLayer.Models;
 using ServiceLayer.Services;
+using ServiceLayer.ViewModels;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
@@ -19,12 +20,12 @@ namespace ServerAPI.Controllers
 
       
         [HttpPost("register")]
-        public async Task<IActionResult> CreateUserAsync([FromBody]User user)
+        public async Task<IActionResult> CreateUserAsync([FromBody]UserRegistrationModel model)
         {
             //переделать , айди должен автоматом выдаваться
             if(ModelState.IsValid)
             {
-                await context.AddUser(user); 
+                
                 return Ok("User added");
             }
             //отлов ошибок модели , смотри аннотацию в User
