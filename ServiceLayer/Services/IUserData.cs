@@ -9,5 +9,7 @@ namespace ServiceLayer.Services
         Task<List<User>> GetAll();
 
         Task AddUser(User user);
+
+        Task<User> FindByNickName(string name);
     }
 }

@@ -31,9 +31,9 @@ namespace ServiceLayer.Services
         /// </summary>
         /// <param name="name">Никнейм юзера</param>
         /// <returns>Возращает пользователя </returns>
-        public Task<User> FindUserByNickname(string name)
+        public async Task<User> FindUserByNickname(string name)
         {
-            throw new NotImplementedException();
+            return await context.FindByNickName(name);
         }
 
         /// <summary>

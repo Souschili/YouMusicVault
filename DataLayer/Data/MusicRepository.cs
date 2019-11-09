@@ -35,6 +35,16 @@ namespace DataLayer.Data
         }
 
         /// <summary>
+        /// Поиск юзера по никнейму
+        /// </summary>
+        /// <param name="name">Никнейм</param>
+        /// <returns>Возращает обьект юзер</returns>
+        public async Task<User> FindByNickName(string name)
+        {
+            return await context.User.FirstOrDefaultAsync(x => x.Nickname == name);
+        }
+
+        /// <summary>
         /// Возращает список всех юзеров
         /// </summary>
         /// <returns></returns>
