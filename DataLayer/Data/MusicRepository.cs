@@ -15,20 +15,24 @@ namespace DataLayer.Data
     {
         private ApplicationContext context;
 
+        /// <summary>
+        /// Конструктор класса 
+        /// </summary>
+        /// <param name="applicationContext">Контекст приложения</param>
         public MusicRepository(ApplicationContext applicationContext)
         {
             this.context = applicationContext;
         }
 
+        /// <summary>
+        /// Запись нового юзера в таблицу
+        /// </summary>
+        /// <param name="user">Обьект типа User</param>
+        /// <returns></returns>
         public async  Task AddUser(User user)
         {
             await context.AddAsync(user);
             await context.SaveChangesAsync();
-        }
-
-        public Task FindRefreshToken(string guid)
-        {
-            throw new NotImplementedException();
         }
 
         /// <summary>
@@ -40,10 +44,5 @@ namespace DataLayer.Data
             throw new NotImplementedException();
         }
 
-
-        public Task<User> GetUserByNMail(string mail)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

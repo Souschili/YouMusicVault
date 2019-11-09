@@ -9,6 +9,19 @@
             Класс репозиторий для работы с бд
             </summary>
         </member>
+        <member name="M:DataLayer.Data.MusicRepository.#ctor(DataLayer.EF.ApplicationContext)">
+            <summary>
+            Конструктор класса 
+            </summary>
+            <param name="applicationContext">Контекст приложения</param>
+        </member>
+        <member name="M:DataLayer.Data.MusicRepository.AddUser(ServiceLayer.Models.User)">
+            <summary>
+            Запись нового юзера в таблицу
+            </summary>
+            <param name="user">Обьект типа User</param>
+            <returns></returns>
+        </member>
         <member name="M:DataLayer.Data.MusicRepository.GetAll">
             <summary>
             Возращает список всех юзеров
