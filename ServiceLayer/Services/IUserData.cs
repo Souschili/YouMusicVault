@@ -10,8 +10,6 @@ namespace ServiceLayer.Services
 
         Task AddUser(User user);
 
-        Task<User> GetUserByNMail(string mail);
-
         //TODO for refresh token
         Task FindRefreshToken(string guid);
 
