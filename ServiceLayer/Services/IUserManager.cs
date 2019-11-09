@@ -1,4 +1,5 @@
 ﻿using ServiceLayer.Models;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace ServiceLayer.Services
@@ -14,6 +15,19 @@ namespace ServiceLayer.Services
         /// <param name="name"></param>
         /// <returns></returns>
         Task<User> FindUserByNickname(string name);
+
+        /// <summary>
+        /// Найти всех юзеров в базе данных
+        /// </summary>
+        /// <returns></returns>
+        Task<List<User>> FindAllUsers();
+
+        /// <summary>
+        /// Регистрация нового юзера в базу
+        /// </summary>
+        /// <param name="user">Объект представляющий нового юзера</param>
+        /// <returns></returns>
+        Task RegisterUser(User user);
 
         //Todo for refresh tokens
         Task FindRefreshToken(string guid);
