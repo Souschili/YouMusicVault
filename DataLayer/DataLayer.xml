@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>DataLayer</name>
+    </assembly>
+    <members>
+        <member name="T:DataLayer.Data.MusicRepository">
+            <summary>
+            Класс репозиторий для работы с бд
+            </summary>
+        </member>
+        <member name="M:DataLayer.Data.MusicRepository.GetAll">
+            <summary>
+            Возращает список всех юзеров
+            </summary>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

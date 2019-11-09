@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ServerAPI</name>
+    </assembly>
+    <members>
+        <member name="T:ServerAPI.Controllers.AuthController">
+            <summary>
+            Контролер авторизации пользователей
+            </summary>
+        </member>
+        <member name="M:ServerAPI.Controllers.AuthController.CreateUserAsync(ServiceLayer.ViewModels.UserRegistrationModel)">
+            <summary>
+            Регистрация нового пользовотеля
+            </summary>
+            <param name="model">Данные юзера из клиента</param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

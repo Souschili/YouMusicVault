@@ -26,8 +26,8 @@ namespace ServiceLayer.Services
         /// Регистрация нового юзера в базу
         /// </summary>
         /// <param name="user">Объект представляющий нового юзера</param>
-        /// <returns></returns>
-        Task RegisterUser(User user);
+        /// <returns>Возращает удачно или нет прошла регистрация</returns>
+        Task<bool> RegisterUser(User user);
 
         //Todo for refresh tokens
         Task FindRefreshToken(string guid);

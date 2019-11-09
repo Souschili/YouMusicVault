@@ -1,0 +1,83 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ServiceLayer</name>
+    </assembly>
+    <members>
+        <member name="T:ServiceLayer.Models.User">
+            <summary>
+            Класс представляющий пользователей
+            </summary>
+        </member>
+        <member name="P:ServiceLayer.Models.User.ID">
+            <summary>
+            Уникальный айди юзера
+            </summary>
+        </member>
+        <member name="P:ServiceLayer.Models.User.Nickname">
+            <summary>
+            Имя юзера
+            </summary>
+        </member>
+        <member name="P:ServiceLayer.Models.User.Email">
+            <summary>
+            Почтовый адресс
+            </summary>
+        </member>
+        <member name="P:ServiceLayer.Models.User.Password">
+            <summary>
+            Пароль
+            </summary>
+        </member>
+        <member name="P:ServiceLayer.Models.User.Status">
+            <summary>
+            Статус юзера
+            </summary>
+        </member>
+        <member name="T:ServiceLayer.Services.IUserManager">
+            <summary>
+            Интерфейс для поиска и фильтрации юзеров
+            </summary>
+        </member>
+        <member name="M:ServiceLayer.Services.IUserManager.FindUserByNickname(System.String)">
+            <summary>
+            Поиск юзера по имени
+            </summary>
+            <param name="name"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ServiceLayer.Services.IUserManager.FindAllUsers">
+            <summary>
+            Найти всех юзеров в базе данных
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ServiceLayer.Services.IUserManager.RegisterUser(ServiceLayer.Models.User)">
+            <summary>
+            Регистрация нового юзера в базу
+            </summary>
+            <param name="user">Объект представляющий нового юзера</param>
+            <returns>Возращает удачно или нет прошла регистрация</returns>
+        </member>
+        <member name="T:ServiceLayer.ViewModels.UserRegistrationModel">
+            <summary>
+            Класс для передачи данных юзера для регистрации
+            </summary>
+        </member>
+        <member name="P:ServiceLayer.ViewModels.UserRegistrationModel.NickName">
+            <summary>
+            Общедоступное имя пользователя
+            </summary>
+        </member>
+        <member name="P:ServiceLayer.ViewModels.UserRegistrationModel.Email">
+            <summary>
+            Почтовый адресс
+            </summary>
+        </member>
+        <member name="P:ServiceLayer.ViewModels.UserRegistrationModel.Password">
+            <summary>
+            Пароль
+            </summary>
+        </member>
+    </members>
+</doc>

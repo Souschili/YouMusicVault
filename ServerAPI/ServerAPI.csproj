@@ -5,6 +5,11 @@
     <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>C:\Users\Xaos\source\repos\YouMusicVault\ServerAPI\ServerAPI.xml</DocumentationFile>
+    <OutputPath>bin\Debug\</OutputPath>
+  </PropertyGroup>
+
   <ItemGroup>
     <Compile Remove="Migrations\20191107183844_11.cs" />
     <Compile Remove="Migrations\20191107183844_11.Designer.cs" />
