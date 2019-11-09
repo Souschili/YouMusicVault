@@ -2,7 +2,6 @@
 using ServiceLayer.Models;
 using ServiceLayer.Services;
 using ServiceLayer.ViewModels;
-using System;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -16,12 +15,12 @@ namespace ServerAPI.Controllers
     public class AuthController : ControllerBase
     {
         private readonly IUserManager userManager;
+
         AuthController(IUserManager manager)
         {
             userManager = manager; 
         }
 
-      
         /// <summary>
         /// Регистрация нового пользовотеля
         /// </summary>
@@ -41,7 +40,6 @@ namespace ServerAPI.Controllers
             };
 
             await userManager.RegisterUser(user);
-
 
             #region памятка ошибки валидации
             //отлов ошибок модели , смотри аннотацию в User
