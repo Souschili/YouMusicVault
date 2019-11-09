@@ -10,10 +10,9 @@ namespace ServiceLayer.Services
 
         Task AddUser(User user);
 
-        //TODO for refresh token
-        Task FindRefreshToken(string guid);
+       
 
 
-        //public DbSet<User> Users { get; set; } //?? delete this
+ 
     }
 }
