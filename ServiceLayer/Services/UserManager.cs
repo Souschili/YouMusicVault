@@ -14,16 +14,16 @@ namespace ServiceLayer.Services
             context = data;
         }
 
+        /// <summary>
+        /// Вывести всех пользователей в базе
+        /// </summary>
+        /// <returns>Список пользователей</returns>
         public Task<List<User>> FindAllUsers()
         {
             throw new NotImplementedException();
         }
 
-        
-        public Task FindRefreshToken(string guid)
-        {
-            throw new NotImplementedException();
-        }
+       
 
         /// <summary>
         /// Найти нового юзера по никнейму

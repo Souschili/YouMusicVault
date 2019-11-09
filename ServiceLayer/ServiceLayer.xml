@@ -59,6 +59,26 @@
             <param name="user">Объект представляющий нового юзера</param>
             <returns>Возращает удачно или нет прошла регистрация</returns>
         </member>
+        <member name="M:ServiceLayer.Services.UserManager.FindAllUsers">
+            <summary>
+            Вывести всех пользователей в базе
+            </summary>
+            <returns>Список пользователей</returns>
+        </member>
+        <member name="M:ServiceLayer.Services.UserManager.FindUserByNickname(System.String)">
+            <summary>
+            Найти нового юзера по никнейму
+            </summary>
+            <param name="name"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ServiceLayer.Services.UserManager.RegisterUser(ServiceLayer.Models.User)">
+            <summary>
+            Метод для регистрации новых юзеров
+            </summary>
+            <param name="user"></param>
+            <returns>Результат попытки добавления нового юзера</returns>
+        </member>
         <member name="T:ServiceLayer.ViewModels.UserRegistrationModel">
             <summary>
             Класс для передачи данных юзера для регистрации
