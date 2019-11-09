@@ -2,6 +2,7 @@
 using ServiceLayer.Models;
 using ServiceLayer.Services;
 using ServiceLayer.ViewModels;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -52,5 +53,14 @@ namespace ServerAPI.Controllers
             #endregion
         }
 
+        /// <summary>
+        /// Показ всех имеющихся пользователей
+        /// </summary>
+        /// <returns>Список пользователей</returns>
+        [HttpGet("all")]
+        public async Task<ActionResult<List<User>>> All()
+        {
+            return await userManager.FindAllUsers();
+        }
     }
 }

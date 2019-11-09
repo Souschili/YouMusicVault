@@ -16,5 +16,11 @@
             <param name="model">Данные юзера из клиента</param>
             <returns></returns>
         </member>
+        <member name="M:ServerAPI.Controllers.AuthController.All">
+            <summary>
+            Показ всех имеющихся пользователей
+            </summary>
+            <returns>Список пользователей</returns>
+        </member>
     </members>
 </doc>

@@ -21,9 +21,9 @@ namespace ServiceLayer.Services
         /// Вывести всех пользователей в базе
         /// </summary>
         /// <returns>Список пользователей</returns>
-        public Task<List<User>> FindAllUsers()
+        public async Task<List<User>> FindAllUsers()
         {
-            throw new NotImplementedException();
+            return await context.GetAll();
         }
 
         /// <summary>
