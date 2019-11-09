@@ -26,16 +26,16 @@ namespace ServiceLayer.Services
             throw new NotImplementedException();
         }
 
-     
         /// <summary>
         /// Найти нового юзера по никнейму
         /// </summary>
         /// <param name="name">Никнейм юзера</param>
         /// <returns>Возращает пользователя </returns>
-        public  Task<User> FindUserByNickname(string name)
+        public Task<User> FindUserByNickname(string name)
         {
             throw new NotImplementedException();
         }
+
         /// <summary>
         /// Метод для регистрации новых юзеров
         /// </summary>
@@ -43,8 +43,8 @@ namespace ServiceLayer.Services
         /// <returns>Результат попытки добавления нового юзера</returns>
         public async Task<bool> RegisterUser(User user)
         {
-                await context.AddUser(user);
-                return true;
+            await context.AddUser(user);
+            return true;
         }
     }
 }
