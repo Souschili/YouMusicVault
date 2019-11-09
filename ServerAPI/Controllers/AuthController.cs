@@ -12,10 +12,10 @@ namespace ServerAPI.Controllers
     [ApiController]
     public class AuthController : ControllerBase
     {
-        private readonly IUserData context;
-        public AuthController(IUserData userData)
+        private readonly IUserManager userManager;
+        public AuthController(IUserManager manager)
         {
-            this.context = userData;
+            userManager = manager;
         }
 
       
