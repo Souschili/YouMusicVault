@@ -40,5 +40,10 @@
             <param name="name">Никнейм пользователя</param>
             <returns></returns>
         </member>
+        <member name="T:ServerAPI.Options.GlobalTokenGenerator">
+            <summary>
+            Класс отвечающий за генерацию токенов
+            </summary>
+        </member>
     </members>
 </doc>
