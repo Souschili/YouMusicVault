@@ -28,12 +28,16 @@ namespace ServerAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            // дергаем настройки из аппсетинга 
-            services.Configure<JwtOptions>(Configuration.GetSection("Jwt"));
             //зависимости
+            services.AddSingleton<ITokenGenerator,GlobalTokenGenerator>();
             services.AddSingleton<JwtOptions>();
+
             services.AddTransient<IUserData, MusicRepository>();
             services.AddScoped<IUserManager, UserManager>();
+
+            // дергаем настройки из аппсетинга 
+            services.AddOptions();
+            services.Configure<JwtOptions>(Configuration.GetSection("Jwt"));
 
             //Добавляем СУБД
             services.AddDbContext<ApplicationContext>(options =>

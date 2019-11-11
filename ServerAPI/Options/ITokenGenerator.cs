@@ -5,9 +5,11 @@ using System.Threading.Tasks;
 
 namespace ServerAPI.Options
 {
-    interface ITokenGenerator
+    public interface ITokenGenerator
     {
         Task GenerateJwtToken();
         Task GenerateRefreshToken();
+
+        JwtOptions GetOption();
     }
 }

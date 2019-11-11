@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Options;
+using System;
 using System.Threading.Tasks;
 
 namespace ServerAPI.Options
@@ -8,8 +10,13 @@ namespace ServerAPI.Options
     /// </summary>
     public class GlobalTokenGenerator : ITokenGenerator
     {
-        
-        private readonly JwtOptions options;
+
+        private readonly IOptions<JwtOptions> options;
+
+        public GlobalTokenGenerator(IOptions<JwtOptions> opt)
+        {
+            options = opt;
+        }
         
         public Task GenerateJwtToken()
         {
@@ -19,6 +26,11 @@ namespace ServerAPI.Options
         public Task GenerateRefreshToken()
         {
             throw new NotImplementedException();
+        }
+
+        public JwtOptions GetOption()
+        {
+            return options.Value ;
         }
     }
 }

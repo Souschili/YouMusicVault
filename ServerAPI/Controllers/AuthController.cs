@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
+using ServerAPI.Options;
 using ServiceLayer.Models;
 using ServiceLayer.Services;
 using ServiceLayer.ViewModels;
@@ -17,10 +19,12 @@ namespace ServerAPI.Controllers
     public class AuthController : ControllerBase
     {
         private readonly IUserManager userManager;
+        private readonly ITokenGenerator tokenGenerator;
 
-        public AuthController(IUserManager manager)
+        public AuthController(IUserManager manager,ITokenGenerator generator)
         {
             userManager = manager;
+            tokenGenerator = generator;
         }
 
         /// <summary>
@@ -58,17 +62,18 @@ namespace ServerAPI.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpPost("login")]
-        public object UserLogIn([FromBody]UserLogInModel logInModel)
+        public ActionResult<JwtOptions> UserLogIn([FromBody]UserLogInModel logInModel)
         {
-            return new
-            {
-                Email = logInModel.Email,
-                Password = logInModel.Password,
-                JwtToken = "todo generate jwt",
-                RefreshToken = "Generate RefreshToken"
-            };
+            return tokenGenerator.GetOption();
+           //return new
+           //{
+           //    Email = logInModel.Email,
+           //    Password = logInModel.Password,
+           //    JwtToken = "todo generate jwt",
+           //    RefreshToken = "Generate RefreshToken"
+           //};
         }
-       
+
 
     }
 }
