@@ -58,9 +58,15 @@ namespace ServerAPI.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpPost("login")]
-        public string UserLogin()
+        public object UserLogIn([FromBody]UserLogInModel logInModel)
         {
-            return "TODO JWTDTO";
+            return new
+            {
+                Email = logInModel.Email,
+                Password = logInModel.Password,
+                JwtToken = "todo generate jwt",
+                RefreshToken = "Generate RefreshToken"
+            };
         }
        
 

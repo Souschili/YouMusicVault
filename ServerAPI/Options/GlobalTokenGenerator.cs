@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace ServerAPI.Options
@@ -10,6 +8,8 @@ namespace ServerAPI.Options
     /// </summary>
     public class GlobalTokenGenerator : ITokenGenerator
     {
+        
+        private readonly JwtOptions options;
         
         public Task GenerateJwtToken()
         {

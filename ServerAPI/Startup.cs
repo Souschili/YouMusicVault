@@ -31,6 +31,7 @@ namespace ServerAPI
             // дергаем настройки из аппсетинга 
             services.Configure<JwtOptions>(Configuration.GetSection("Jwt"));
             //зависимости
+            services.AddSingleton<JwtOptions>();
             services.AddTransient<IUserData, MusicRepository>();
             services.AddScoped<IUserManager, UserManager>();
 

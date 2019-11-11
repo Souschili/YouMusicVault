@@ -16,7 +16,7 @@
             <param name="model">Данные юзера из клиента</param>
             <returns></returns>
         </member>
-        <member name="M:ServerAPI.Controllers.AuthController.UserLogin">
+        <member name="M:ServerAPI.Controllers.AuthController.UserLogIn(ServiceLayer.ViewModels.UserLogInModel)">
             <summary>
             Авторизация пользователя и выдача токена
             </summary>
