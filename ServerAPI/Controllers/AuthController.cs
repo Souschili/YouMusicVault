@@ -53,7 +53,16 @@ namespace ServerAPI.Controllers
             //return BadRequest(errors);
             #endregion
         }
-
+        /// <summary>
+        /// Авторизация пользователя и выдача токена
+        /// </summary>
+        /// <returns></returns>
+        [HttpPost("login")]
+        public string UserLogin()
+        {
+            return "TODO JWTDTO";
+        }
        
+
     }
 }

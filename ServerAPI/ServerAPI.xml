@@ -16,6 +16,12 @@
             <param name="model">Данные юзера из клиента</param>
             <returns></returns>
         </member>
+        <member name="M:ServerAPI.Controllers.AuthController.UserLogin">
+            <summary>
+            Авторизация пользователя и выдача токена
+            </summary>
+            <returns></returns>
+        </member>
         <member name="T:ServerAPI.Controllers.UsersController">
             <summary>
             Работа с текущими пользователями
