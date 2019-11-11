@@ -29,5 +29,10 @@
             <param name="name">Никнейм пользователя</param>
             <returns></returns>
         </member>
+        <member name="T:ServerAPI.Controllers.UsersController">
+            <summary>
+            Работа с текущими пользователями
+            </summary>
+        </member>
     </members>
 </doc>
