@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Text;
 using DataLayer.Data;
 using DataLayer.EF;
@@ -31,7 +32,7 @@ namespace ServerAPI
             services.Configure<JwtOptions>(Configuration.GetSection("Jwt"));
             //зависимости
             services.AddTransient<IUserData, MusicRepository>();
-            services.AddScoped<IUserManager,UserManager>();
+            services.AddScoped<IUserManager, UserManager>();
 
             //Добавляем СУБД
             services.AddDbContext<ApplicationContext>(options =>
@@ -49,7 +50,13 @@ namespace ServerAPI
                     Title = "Music Vault API",
                     Description = "BackEnd path of Music Vault web site"
                 });
+                //прикручиваем xml файл к свагеру
+                var xmlPathSwagger = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "ServerAPI.xml");
+                options.IncludeXmlComments(xmlPathSwagger,true);
             });
+
+
+
 
             //добавляем токены JWT
             services.AddAuthentication(x =>
