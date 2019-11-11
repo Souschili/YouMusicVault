@@ -16,13 +16,18 @@
             <param name="model">Данные юзера из клиента</param>
             <returns></returns>
         </member>
-        <member name="M:ServerAPI.Controllers.AuthController.All">
+        <member name="T:ServerAPI.Controllers.UsersController">
+            <summary>
+            Работа с текущими пользователями
+            </summary>
+        </member>
+        <member name="M:ServerAPI.Controllers.UsersController.All">
             <summary>
             Показ всех имеющихся пользователей
             </summary>
             <returns>Список пользователей</returns>
         </member>
-        <member name="M:ServerAPI.Controllers.AuthController.GetUserAsync(System.String)">
+        <member name="M:ServerAPI.Controllers.UsersController.GetUserAsync(System.String)">
             <summary>
             Получить юзера по нику
             </summary>
