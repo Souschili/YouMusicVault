@@ -10,7 +10,7 @@ namespace ServerAPI.Options
     /// </summary>
     public class JWTModel
     {
-
+        public string NickName { get; set; }
         public string JwtToken { get; set; }
         public string RefreshToken { get; set; }
     }
