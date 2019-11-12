@@ -29,7 +29,7 @@ namespace ServerAPI
         public void ConfigureServices(IServiceCollection services)
         {
             //зависимости
-            services.AddSingleton<ITokenGenerator,GlobalTokenGenerator>();
+            services.AddTransient<ITokenGenerator,GlobalTokenGenerator>();
             services.AddSingleton<JwtOptions>();
 
             services.AddTransient<IUserData, MusicRepository>();

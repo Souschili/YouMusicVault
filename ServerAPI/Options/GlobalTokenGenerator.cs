@@ -17,7 +17,7 @@ namespace ServerAPI.Options
         {
             options = opt;
         }
-        
+        //TODO generate jwt
         public Task GenerateJwtToken()
         {
             throw new NotImplementedException();
