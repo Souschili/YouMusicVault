@@ -45,5 +45,10 @@
             Класс отвечающий за генерацию токенов
             </summary>
         </member>
+        <member name="T:ServerAPI.Options.JWTModel">
+            <summary>
+            Класс возрающий токен и прочую инфу
+            </summary>
+        </member>
     </members>
 </doc>
