@@ -1,6 +1,10 @@
-﻿using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Options;
+﻿using Microsoft.Extensions.Options;
+using Microsoft.IdentityModel.Tokens;
 using System;
+using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace ServerAPI.Options
@@ -18,6 +22,25 @@ namespace ServerAPI.Options
             options = opt;
         }
         //TODO generate jwt
+        public async Task<string> GenerateJwtToken(List<Claim> userclaims)
+        {
+
+            var symetrickey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(options.Value.Secret));
+            var singincredencials = new SigningCredentials(symetrickey, SecurityAlgorithms.HmacSha256);
+
+            var JwtToken = new JwtSecurityToken(
+                issuer: options.Value.Issuer,
+                audience: options.Value.Audience,
+                claims: userclaims,
+                signingCredentials: singincredencials,
+                expires: DateTime.Now.AddMinutes(options.Value.ExpireTime).Date,
+                notBefore: new DateTimeOffset(DateTime.Now).DateTime
+                );
+
+            var token = await Task.Run(()=>new JwtSecurityTokenHandler().WriteToken(JwtToken));
+            return token;
+        }
+
         public Task GenerateJwtToken()
         {
             throw new NotImplementedException();
@@ -30,7 +53,7 @@ namespace ServerAPI.Options
 
         public JwtOptions GetOption()
         {
-            return options.Value ;
+            return options.Value;
         }
     }
 }
