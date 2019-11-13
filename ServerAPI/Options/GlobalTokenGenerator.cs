@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -47,9 +48,14 @@ namespace ServerAPI.Options
             throw new NotImplementedException();
         }
 
-        public Task GenerateRefreshToken()
+        public async Task<string> GenerateRefreshToken()
         {
-            throw new NotImplementedException();
+            var randomNumber = new byte[32];
+            using (var rng = RandomNumberGenerator.Create())
+            {
+                rng.GetBytes(randomNumber);
+                return await Task.Run(()=> Convert.ToBase64String(randomNumber));
+            }
         }
 
         public JwtOptions GetOption()

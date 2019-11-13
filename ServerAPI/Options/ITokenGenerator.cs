@@ -7,7 +7,7 @@ namespace ServerAPI.Options
     public interface ITokenGenerator
     {
         Task<string> GenerateJwtToken(List<Claim> claims);
-        Task GenerateRefreshToken();
+        Task<string> GenerateRefreshToken();
 
         JwtOptions GetOption();
     }
