@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace ServiceLayer.Models
 {
@@ -36,7 +37,16 @@ namespace ServiceLayer.Models
         /// Статус юзера
         /// </summary>
         [Required]
+        [MinLength(4)]
+        [MaxLength(30)]
         public string Status { get; set; }
+        /// <summary>
+        /// Дата регистрации
+        /// </summary>
+        public DateTime Created { get; set; } = DateTime.Now;
+
+        public DateTime LastVisit { get; set; }
+
         //TODO дополнить модель по мере надобности
     }
 }

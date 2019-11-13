@@ -34,6 +34,11 @@
             Статус юзера
             </summary>
         </member>
+        <member name="P:ServiceLayer.Models.User.Created">
+            <summary>
+            Дата регистрации
+            </summary>
+        </member>
         <member name="T:ServiceLayer.Services.IUserManager">
             <summary>
             Интерфейс для поиска и фильтрации юзеров

@@ -19,7 +19,7 @@ namespace DataLayer.EF
         /// <param name="options">дефолтные настройки для передачи в базовый класс</param>
         public ApplicationContext(DbContextOptions<ApplicationContext> options) : base(options)
         {
-            Database.EnsureCreated();
+            Database.Migrate();
         }
 
     }
