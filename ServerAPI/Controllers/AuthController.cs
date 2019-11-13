@@ -4,8 +4,10 @@ using ServerAPI.Options;
 using ServiceLayer.Models;
 using ServiceLayer.Services;
 using ServiceLayer.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Security.Claims;
+using System.Security.Cryptography;
 using System.Threading.Tasks;
 
 namespace ServerAPI.Controllers
@@ -64,20 +66,16 @@ namespace ServerAPI.Controllers
         [HttpPost("login")]
         public async Task<ActionResult<string>> UserLogInAsync([FromBody]UserLogInModel logInModel)
         {
-            //тестовый набор клаймов
+
+            // поиск юзера в базе если удачно выдать токен
+            //тестовый набор клаймов, надо добавить таблицу клаймов
             var claims = new List<Claim> { 
             new Claim(ClaimTypes.Role,"User"),
             new Claim(ClaimTypes.Role,"Maroder")
             };
 
             return await tokenGenerator.GenerateJwtToken(claims);
-           //return new
-           //{
-           //    Email = logInModel.Email,
-           //    Password = logInModel.Password,
-           //    JwtToken = "todo generate jwt",
-           //    RefreshToken = "Generate RefreshToken"
-           //};
+         
         }
 
         /// <summary>
@@ -86,9 +84,14 @@ namespace ServerAPI.Controllers
         /// <returns></returns>
         [Authorize(Roles ="Admin,User,Maroder")]
         [HttpGet("test")]
-        public IActionResult Test()
+        public ActionResult<string> Test()
         {
-            return Ok("Very important content");
+            var randomNumber = new byte[32];
+            using (var rng = RandomNumberGenerator.Create())
+            {
+                rng.GetBytes(randomNumber);
+                return Convert.ToBase64String(randomNumber);
+            }
         }
 
     }
