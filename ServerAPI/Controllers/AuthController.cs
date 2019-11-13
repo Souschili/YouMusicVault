@@ -1,11 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Configuration;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using ServerAPI.Options;
 using ServiceLayer.Models;
 using ServiceLayer.Services;
 using ServiceLayer.ViewModels;
 using System.Collections.Generic;
-using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace ServerAPI.Controllers
@@ -62,9 +62,15 @@ namespace ServerAPI.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpPost("login")]
-        public ActionResult<JwtOptions> UserLogIn([FromBody]UserLogInModel logInModel)
+        public async Task<ActionResult<string>> UserLogInAsync([FromBody]UserLogInModel logInModel)
         {
-            return tokenGenerator.GetOption();
+            //тестовый набор клаймов
+            var claims = new List<Claim> { 
+            new Claim(ClaimTypes.Role,"User"),
+            new Claim(ClaimTypes.Role,"Maroder")
+            };
+
+            return await tokenGenerator.GenerateJwtToken(claims);
            //return new
            //{
            //    Email = logInModel.Email,
@@ -74,6 +80,16 @@ namespace ServerAPI.Controllers
            //};
         }
 
+        /// <summary>
+        /// Тестовый метод
+        /// </summary>
+        /// <returns></returns>
+        [Authorize(Roles ="Admin,User,Maroder")]
+        [HttpGet("test")]
+        public IActionResult Test()
+        {
+            return Ok("Very important content");
+        }
 
     }
 }

@@ -33,11 +33,12 @@ namespace ServerAPI.Options
                 audience: options.Value.Audience,
                 claims: userclaims,
                 signingCredentials: singincredencials,
-                expires: DateTime.Now.AddMinutes(options.Value.ExpireTime).Date,
-                notBefore: new DateTimeOffset(DateTime.Now).DateTime
+                expires: DateTime.Now.AddMinutes(options.Value.ExpireTime)
+                //удалить или разобраться почему кидает эксепшион
+                //notBefore: new DateTimeOffset(DateTime.Now).DateTime
                 );
-
-            var token = await Task.Run(()=>new JwtSecurityTokenHandler().WriteToken(JwtToken));
+            
+            var token = await Task.Run(() => new JwtSecurityTokenHandler().WriteToken(JwtToken));
             return token;
         }
 
