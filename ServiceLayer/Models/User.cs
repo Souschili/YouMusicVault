@@ -45,7 +45,7 @@ namespace ServiceLayer.Models
         /// </summary>
         public DateTime Created { get; set; } = DateTime.Now;
 
-        public DateTime LastVisit { get; set; }
+        public DateTime LastVisit { get; set; } = DateTime.Now;
 
         //TODO дополнить модель по мере надобности
     }

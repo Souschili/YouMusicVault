@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using ServerAPI.Options;
-using ServiceLayer.Models;
 using ServiceLayer.Services;
 using ServiceLayer.ViewModels;
 using System;
@@ -9,6 +8,8 @@ using System.Collections.Generic;
 using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Threading.Tasks;
+using System.Linq;
+using ServiceLayer.Models;
 
 namespace ServerAPI.Controllers
 {
@@ -23,7 +24,7 @@ namespace ServerAPI.Controllers
         private readonly IUserManager userManager;
         private readonly ITokenGenerator tokenGenerator;
 
-        public AuthController(IUserManager manager,ITokenGenerator generator)
+        public AuthController(IUserManager manager, ITokenGenerator generator)
         {
             userManager = manager;
             tokenGenerator = generator;
@@ -37,19 +38,28 @@ namespace ServerAPI.Controllers
         [HttpPost("register")]
         public async Task<IActionResult> CreateUserAsync([FromBody]UserRegistrationModel model)
         {
-            //по хорошему добавить сервис для выдачи статуса и айди
-            User user = new User
+            //смотрим есть такой в базе
+            var user = (await userManager.FindAllUsers())
+                .FirstOrDefault(x => x.Password == model.Password && x.Nickname == model.NickName);
+            //если нету то добавляем
+            if (user == null)
             {
-                Email = model.Email,
-                Nickname = model.NickName,
-                Password = model.Password,
-                Status = "User",
-                ID = System.Guid.NewGuid().ToString()
-            };
+                user = new User
+                {
+                    ID = System.Guid.NewGuid().ToString(),
+                    Nickname = model.NickName,
+                    Password = model.Password,
+                    Email = model.Email,
+                    Status="User" //пока все юзеры
+                };
+                
+                //создаем нового юзера
+                var rezult = await userManager.RegisterUser(user);
+                
+                if (rezult)
+                    return Ok("User added");
 
-            var rezult = await userManager.RegisterUser(user);
-
-            if (rezult) return Ok("User added");
+            }   
 
             return BadRequest("We cant add user!!");
             #region памятка ошибки валидации
@@ -69,20 +79,20 @@ namespace ServerAPI.Controllers
 
             // поиск юзера в базе если удачно выдать токен
             //тестовый набор клаймов, надо добавить таблицу клаймов
-            var claims = new List<Claim> { 
+            var claims = new List<Claim> {
             new Claim(ClaimTypes.Role,"User"),
             new Claim(ClaimTypes.Role,"Maroder")
             };
 
             return await tokenGenerator.GenerateJwtToken(claims);
-         
+
         }
 
         /// <summary>
         /// Тестовый метод
         /// </summary>
         /// <returns></returns>
-        [Authorize(Roles ="Admin,User,Maroder")]
+        [Authorize(Roles = "Admin,User,Maroder")]
         [HttpGet("test")]
         public ActionResult<string> Test()
         {
