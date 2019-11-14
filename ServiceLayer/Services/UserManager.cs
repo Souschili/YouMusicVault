@@ -25,6 +25,16 @@ namespace ServiceLayer.Services
         {
             return await context.GetAll();
         }
+        /// <summary>
+        /// Поиск юзера по параметрам
+        /// </summary>
+        /// <param name="login">Почтовый адресс</param>
+        /// <param name="password">Пароль</param>
+        /// <returns>Обьект пользователь</returns>
+        public async Task<User> FindUser(string login, string password)
+        {
+            return await context.FindUser(login, password);
+        }
 
         /// <summary>
         /// Найти нового юзера по никнейму

@@ -50,9 +50,9 @@ namespace DataLayer.Data
         /// <param name="login">Почтовый адресс</param>
         /// <param name="password">Пароль</param>
         /// <returns></returns>
-        public Task<User> FindUser(string login, string password)
+        public async Task<User> FindUser(string login, string password)
         {
-            var user = context.User.FirstOrDefaultAsync(x => x.Email == login && x.Password == password);
+            var user = await context.User.FirstOrDefaultAsync(x => x.Email == login && x.Password == password);
             return user;
         }
 
