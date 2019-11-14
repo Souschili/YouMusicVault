@@ -28,7 +28,7 @@ namespace DataLayer.Data
         /// </summary>
         /// <param name="user">Обьект типа User</param>
         /// <returns></returns>
-        public async  Task AddUser(User user)
+        public async  Task AddUserAsync(User user)
         {
             await context.AddAsync(user);
             await context.SaveChangesAsync();
@@ -39,7 +39,7 @@ namespace DataLayer.Data
         /// </summary>
         /// <param name="name">Никнейм</param>
         /// <returns>Возращает обьект юзер</returns>
-        public async Task<User> FindByNickName(string name)
+        public async Task<User> FindByNickNameAsync(string name)
         {
             return await context.User.FirstOrDefaultAsync(x => x.Nickname == name);
         }
@@ -50,7 +50,7 @@ namespace DataLayer.Data
         /// <param name="login">Почтовый адресс</param>
         /// <param name="password">Пароль</param>
         /// <returns></returns>
-        public async Task<User> FindUser(string login, string password)
+        public async Task<User> FindUserAsync(string login, string password)
         {
             var user = await context.User.FirstOrDefaultAsync(x => x.Email == login && x.Password == password);
             return user;
@@ -60,7 +60,7 @@ namespace DataLayer.Data
         /// Возращает список всех юзеров
         /// </summary>
         /// <returns></returns>
-        public async Task<List<User>> GetAll()
+        public async Task<List<User>> GetAllAsync()
         {
             return await context.User.ToListAsync();
         }

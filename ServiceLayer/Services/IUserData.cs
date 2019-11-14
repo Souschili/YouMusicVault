@@ -6,12 +6,12 @@ namespace ServiceLayer.Services
 {
     public interface IUserData
     {
-        Task<List<User>> GetAll();
+        Task<List<User>> GetAllAsync();
 
-        Task AddUser(User user);
+        Task AddUserAsync(User user);
 
-        Task<User> FindByNickName(string name);
+        Task<User> FindByNickNameAsync(string name);
 
-        Task<User> FindUser(string login, string password);
+        Task<User> FindUserAsync(string login, string password);
     }
 }

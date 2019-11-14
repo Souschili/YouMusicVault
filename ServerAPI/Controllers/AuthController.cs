@@ -76,7 +76,7 @@ namespace ServerAPI.Controllers
         [HttpPost("login")]
         public async Task<ActionResult<string>> UserLogInAsync([FromBody]UserLogInModel logInModel)
         {
-            var user=await userManager.
+            var user=await userManager.FindUser()
             // поиск юзера в базе если удачно выдать токен
             //тестовый набор клаймов, надо добавить таблицу клаймов
             var claims = new List<Claim> {
