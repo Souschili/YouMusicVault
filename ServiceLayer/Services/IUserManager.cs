@@ -28,6 +28,12 @@ namespace ServiceLayer.Services
         /// <param name="user">Объект представляющий нового юзера</param>
         /// <returns>Возращает удачно или нет прошла регистрация</returns>
         Task<bool> RegisterUser(User user);
-
+        /// <summary>
+        /// Проверка есть ли такой позователь
+        /// </summary>
+        /// <param name="login">Почтовый адресс</param>
+        /// <param name="password">Пароль</param>
+        /// <returns></returns>
+        Task<User> FindUser(string login, string password);
     }
 }

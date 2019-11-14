@@ -11,5 +11,7 @@ namespace ServiceLayer.Services
         Task AddUser(User user);
 
         Task<User> FindByNickName(string name);
+
+        Task<User> FindUser(string login, string password);
     }
 }

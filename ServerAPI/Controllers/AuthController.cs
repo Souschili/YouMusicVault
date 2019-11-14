@@ -38,7 +38,7 @@ namespace ServerAPI.Controllers
         [HttpPost("register")]
         public async Task<IActionResult> CreateUserAsync([FromBody]UserRegistrationModel model)
         {
-            //смотрим есть такой в базе
+            //смотрим есть такой в базе ( запилить отдельный метод)
             var user = (await userManager.FindAllUsers())
                 .FirstOrDefault(x => x.Password == model.Password && x.Nickname == model.NickName);
             //если нету то добавляем
@@ -76,7 +76,7 @@ namespace ServerAPI.Controllers
         [HttpPost("login")]
         public async Task<ActionResult<string>> UserLogInAsync([FromBody]UserLogInModel logInModel)
         {
-
+            var user=await userManager.
             // поиск юзера в базе если удачно выдать токен
             //тестовый набор клаймов, надо добавить таблицу клаймов
             var claims = new List<Claim> {
