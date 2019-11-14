@@ -45,6 +45,18 @@ namespace DataLayer.Data
         }
 
         /// <summary>
+        /// Поиск одной записи в таблице юзеров 
+        /// </summary>
+        /// <param name="login">Почтовый адресс</param>
+        /// <param name="password">Пароль</param>
+        /// <returns></returns>
+        public Task<User> FindUser(string login, string password)
+        {
+            var user = context.User.FirstOrDefaultAsync(x => x.Email == login && x.Password == password);
+            return user;
+        }
+
+        /// <summary>
         /// Возращает список всех юзеров
         /// </summary>
         /// <returns></returns>
