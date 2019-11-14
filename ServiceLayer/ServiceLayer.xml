@@ -44,45 +44,61 @@
             Интерфейс для поиска и фильтрации юзеров
             </summary>
         </member>
-        <member name="M:ServiceLayer.Services.IUserManager.FindUserByNickname(System.String)">
+        <member name="M:ServiceLayer.Services.IUserManager.FindUserByNicknameAsync(System.String)">
             <summary>
             Поиск юзера по имени
             </summary>
             <param name="name"></param>
             <returns></returns>
         </member>
-        <member name="M:ServiceLayer.Services.IUserManager.FindAllUsers">
+        <member name="M:ServiceLayer.Services.IUserManager.FindAllUsersAsync">
             <summary>
             Найти всех юзеров в базе данных
             </summary>
             <returns></returns>
         </member>
-        <member name="M:ServiceLayer.Services.IUserManager.RegisterUser(ServiceLayer.Models.User)">
+        <member name="M:ServiceLayer.Services.IUserManager.RegisterUserAsync(ServiceLayer.Models.User)">
             <summary>
             Регистрация нового юзера в базу
             </summary>
             <param name="user">Объект представляющий нового юзера</param>
             <returns>Возращает удачно или нет прошла регистрация</returns>
         </member>
+        <member name="M:ServiceLayer.Services.IUserManager.FindUserAsync(System.String,System.String)">
+            <summary>
+            Проверка есть ли такой позователь
+            </summary>
+            <param name="login">Почтовый адресс</param>
+            <param name="password">Пароль</param>
+            <returns></returns>
+        </member>
         <member name="T:ServiceLayer.Services.UserManager">
             <summary>
             Класс по работе с пользователями
             </summary>
         </member>
-        <member name="M:ServiceLayer.Services.UserManager.FindAllUsers">
+        <member name="M:ServiceLayer.Services.UserManager.FindAllUsersAsync">
             <summary>
             Вывести всех пользователей в базе
             </summary>
             <returns>Список пользователей</returns>
         </member>
-        <member name="M:ServiceLayer.Services.UserManager.FindUserByNickname(System.String)">
+        <member name="M:ServiceLayer.Services.UserManager.FindUserAsync(System.String,System.String)">
+            <summary>
+            Поиск юзера по параметрам
+            </summary>
+            <param name="login">Почтовый адресс</param>
+            <param name="password">Пароль</param>
+            <returns>Обьект пользователь</returns>
+        </member>
+        <member name="M:ServiceLayer.Services.UserManager.FindUserByNicknameAsync(System.String)">
             <summary>
             Найти нового юзера по никнейму
             </summary>
             <param name="name">Никнейм юзера</param>
             <returns>Возращает пользователя </returns>
         </member>
-        <member name="M:ServiceLayer.Services.UserManager.RegisterUser(ServiceLayer.Models.User)">
+        <member name="M:ServiceLayer.Services.UserManager.RegisterUserAsync(ServiceLayer.Models.User)">
             <summary>
             Метод для регистрации новых юзеров
             </summary>

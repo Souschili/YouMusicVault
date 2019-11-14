@@ -28,7 +28,7 @@ namespace ServerAPI.Controllers
         [HttpGet("all")]
         public async Task<ActionResult<List<User>>> All()
         {
-            return await userManager.FindAllUsers();
+            return await userManager.FindAllUsersAsync();
         }
 
         /// <summary>
@@ -39,7 +39,7 @@ namespace ServerAPI.Controllers
         [HttpGet("{name}")]
         public async Task<ActionResult<User>> GetUserAsync(string name)
         {
-            var user = await userManager.FindUserByNickname(name);
+            var user = await userManager.FindUserByNicknameAsync(name);
             return user;
         }
 

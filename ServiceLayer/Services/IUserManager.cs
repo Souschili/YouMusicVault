@@ -14,26 +14,26 @@ namespace ServiceLayer.Services
         /// </summary>
         /// <param name="name"></param>
         /// <returns></returns>
-        Task<User> FindUserByNickname(string name);
+        Task<User> FindUserByNicknameAsync(string name);
 
         /// <summary>
         /// Найти всех юзеров в базе данных
         /// </summary>
         /// <returns></returns>
-        Task<List<User>> FindAllUsers();
+        Task<List<User>> FindAllUsersAsync();
 
         /// <summary>
         /// Регистрация нового юзера в базу
         /// </summary>
         /// <param name="user">Объект представляющий нового юзера</param>
         /// <returns>Возращает удачно или нет прошла регистрация</returns>
-        Task<bool> RegisterUser(User user);
+        Task<bool> RegisterUserAsync(User user);
         /// <summary>
         /// Проверка есть ли такой позователь
         /// </summary>
         /// <param name="login">Почтовый адресс</param>
         /// <param name="password">Пароль</param>
         /// <returns></returns>
-        Task<User> FindUser(string login, string password);
+        Task<User> FindUserAsync(string login, string password);
     }
 }

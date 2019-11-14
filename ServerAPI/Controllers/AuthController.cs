@@ -39,7 +39,7 @@ namespace ServerAPI.Controllers
         public async Task<IActionResult> CreateUserAsync([FromBody]UserRegistrationModel model)
         {
             //смотрим есть такой в базе ( запилить отдельный метод)
-            var user = (await userManager.FindAllUsers())
+            var user = (await userManager.FindAllUsersAsync())
                 .FirstOrDefault(x => x.Password == model.Password && x.Nickname == model.NickName);
             //если нету то добавляем
             if (user == null)
@@ -50,16 +50,16 @@ namespace ServerAPI.Controllers
                     Nickname = model.NickName,
                     Password = model.Password,
                     Email = model.Email,
-                    Status="User" //пока все юзеры
+                    Status = "User" //пока все юзеры
                 };
-                
+
                 //создаем нового юзера
-                var rezult = await userManager.RegisterUser(user);
-                
+                var rezult = await userManager.RegisterUserAsync(user);
+
                 if (rezult)
                     return Ok("User added");
 
-            }   
+            }
 
             return BadRequest("We cant add user!!");
             #region памятка ошибки валидации
@@ -76,7 +76,12 @@ namespace ServerAPI.Controllers
         [HttpPost("login")]
         public async Task<ActionResult<string>> UserLogInAsync([FromBody]UserLogInModel logInModel)
         {
-            var user=await userManager.FindUser()
+            var user = await userManager.FindUserAsync(logInModel.Email, logInModel.Password);
+            //
+            if(user==null)
+            {
+                return BadRequest("Can't find this user!");
+            }
             // поиск юзера в базе если удачно выдать токен
             //тестовый набор клаймов, надо добавить таблицу клаймов
             var claims = new List<Claim> {

@@ -21,9 +21,9 @@ namespace ServiceLayer.Services
         /// Вывести всех пользователей в базе
         /// </summary>
         /// <returns>Список пользователей</returns>
-        public async Task<List<User>> FindAllUsers()
+        public async Task<List<User>> FindAllUsersAsync()
         {
-            return await context.GetAll();
+            return await context.GetAllAsync();
         }
         /// <summary>
         /// Поиск юзера по параметрам
@@ -31,9 +31,9 @@ namespace ServiceLayer.Services
         /// <param name="login">Почтовый адресс</param>
         /// <param name="password">Пароль</param>
         /// <returns>Обьект пользователь</returns>
-        public async Task<User> FindUser(string login, string password)
+        public async Task<User> FindUserAsync(string login, string password)
         {
-            return await context.FindUser(login, password);
+            return await context.FindUserAsync(login, password);
         }
 
         /// <summary>
@@ -41,9 +41,9 @@ namespace ServiceLayer.Services
         /// </summary>
         /// <param name="name">Никнейм юзера</param>
         /// <returns>Возращает пользователя </returns>
-        public async Task<User> FindUserByNickname(string name)
+        public async Task<User> FindUserByNicknameAsync(string name)
         {
-            return await context.FindByNickName(name);
+            return await context.FindByNickNameAsync(name);
         }
 
         /// <summary>
@@ -51,9 +51,9 @@ namespace ServiceLayer.Services
         /// </summary>
         /// <param name="user"></param>
         /// <returns>Результат попытки добавления нового юзера</returns>
-        public async Task<bool> RegisterUser(User user)
+        public async Task<bool> RegisterUserAsync(User user)
         {
-            await context.AddUser(user);
+            await context.AddUserAsync(user);
             return true;
         }
     }

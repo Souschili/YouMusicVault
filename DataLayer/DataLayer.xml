@@ -15,21 +15,29 @@
             </summary>
             <param name="applicationContext">Контекст приложения</param>
         </member>
-        <member name="M:DataLayer.Data.MusicRepository.AddUser(ServiceLayer.Models.User)">
+        <member name="M:DataLayer.Data.MusicRepository.AddUserAsync(ServiceLayer.Models.User)">
             <summary>
             Запись нового юзера в таблицу
             </summary>
             <param name="user">Обьект типа User</param>
             <returns></returns>
         </member>
-        <member name="M:DataLayer.Data.MusicRepository.FindByNickName(System.String)">
+        <member name="M:DataLayer.Data.MusicRepository.FindByNickNameAsync(System.String)">
             <summary>
             Поиск юзера по никнейму
             </summary>
             <param name="name">Никнейм</param>
             <returns>Возращает обьект юзер</returns>
         </member>
-        <member name="M:DataLayer.Data.MusicRepository.GetAll">
+        <member name="M:DataLayer.Data.MusicRepository.FindUserAsync(System.String,System.String)">
+            <summary>
+            Поиск одной записи в таблице юзеров 
+            </summary>
+            <param name="login">Почтовый адресс</param>
+            <param name="password">Пароль</param>
+            <returns></returns>
+        </member>
+        <member name="M:DataLayer.Data.MusicRepository.GetAllAsync">
             <summary>
             Возращает список всех юзеров
             </summary>
