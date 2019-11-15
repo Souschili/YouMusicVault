@@ -77,7 +77,7 @@ namespace ServerAPI.Controllers
         public async Task<ActionResult<string>> UserLogInAsync([FromBody]UserLogInModel logInModel)
         {
             var user = await userManager.FindUserAsync(logInModel.Email, logInModel.Password);
-            //
+            //если юзер не найден , то ответ 400
             if(user==null)
             {
                 return BadRequest("Can't find this user!");
@@ -85,11 +85,13 @@ namespace ServerAPI.Controllers
             // поиск юзера в базе если удачно выдать токен
             //тестовый набор клаймов, надо добавить таблицу клаймов
             var claims = new List<Claim> {
-            new Claim(ClaimTypes.Role,"User"),
-            new Claim(ClaimTypes.Role,"Maroder")
+            new Claim(ClaimTypes.Role,user.Status),
+            new Claim(ClaimTypes.Email,user.Email)
             };
 
-            return await tokenGenerator.GenerateJwtToken(claims);
+            return await tokenGenerator.;
+
+            //return await tokenGenerator.GenerateJwtToken(claims);
 
         }
 

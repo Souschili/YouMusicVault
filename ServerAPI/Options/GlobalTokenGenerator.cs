@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
+using ServiceLayer.Models;
 using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
@@ -23,7 +24,7 @@ namespace ServerAPI.Options
             options = opt;
         }
         //TODO generate jwt
-        public async Task<string> GenerateJwtToken(List<Claim> userclaims)
+         private async Task<string> GenerateJwtToken(List<Claim> userclaims)
         {
 
             var symetrickey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(options.Value.Secret));
@@ -43,9 +44,13 @@ namespace ServerAPI.Options
             return token;
         }
 
-        public Task GenerateJwtToken()
+        public async Task<JWTModel> GenerateJwtToken(User user)
         {
-            throw new NotImplementedException();
+            var claims = new List<Claim>();
+
+            var token = await GenerateJwtToken(claims) ;
+            var refresh = await GenerateRefreshToken();
+            return new JWTModel { NickName = user.Nickname, JwtToken = token, RefreshToken = refresh };
         }
 
         public async Task<string> GenerateRefreshToken()
