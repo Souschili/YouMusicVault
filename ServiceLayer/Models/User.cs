@@ -44,7 +44,9 @@ namespace ServiceLayer.Models
         /// Дата регистрации
         /// </summary>
         public DateTime Created { get; set; } = DateTime.Now;
-
+        /// <summary>
+        /// Дата последнего визита
+        /// </summary>
         public DateTime LastVisit { get; set; } = DateTime.Now;
 
         //TODO дополнить модель по мере надобности

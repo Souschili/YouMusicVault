@@ -71,6 +71,12 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="M:ServerAPI.Options.GlobalTokenGenerator.GetOption">
+            <summary>
+            Вызов настроек из аппсетинга
+            </summary>
+            <returns></returns>
+        </member>
         <member name="T:ServerAPI.Options.JWTModel">
             <summary>
             Класс возрающий токен и прочую инфу
