@@ -23,8 +23,12 @@ namespace ServerAPI.Options
         {
             options = opt;
         }
-        //TODO generate jwt
-         private async Task<string> GenerateJwtToken(List<Claim> userclaims)
+        /// <summary>
+        /// Генерирует jwt токен
+        /// </summary>
+        /// <param name="userclaims"></param>
+        /// <returns></returns>
+         public async Task<string> GenerateJwtToken(List<Claim> userclaims)
         {
 
             var symetrickey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(options.Value.Secret));
@@ -44,15 +48,30 @@ namespace ServerAPI.Options
             return token;
         }
 
-        public async Task<JWTModel> GenerateJwtToken(User user)
+        /// <summary>
+        /// Генерирует токены выдаваемые юзеру
+        /// </summary>
+        /// <param name="user">Модель представляющая пользователя</param>
+        /// <returns></returns>
+        public async Task<JWTModel> GenerateUserToken(User user) 
         {
-            var claims = new List<Claim>();
+            var claims = new List<Claim>()
+            {
+                new Claim(ClaimTypes.Name,user.Nickname),
+                new Claim(ClaimTypes.Email,user.Email),
+                new Claim(ClaimTypes.Role,user.Status),
+                //TODO дополнить список клаймов если надо
+            };
 
             var token = await GenerateJwtToken(claims) ;
             var refresh = await GenerateRefreshToken();
             return new JWTModel { NickName = user.Nickname, JwtToken = token, RefreshToken = refresh };
         }
 
+        /// <summary>
+        /// Генерация токена обновления
+        /// </summary>
+        /// <returns></returns>
         public async Task<string> GenerateRefreshToken()
         {
             var randomNumber = new byte[32];
@@ -63,7 +82,11 @@ namespace ServerAPI.Options
             }
         }
 
-        public JwtOptions GetOption()
+        /// <summary>
+        /// Вызов настроек из аппсетинга
+        /// </summary>
+        /// <returns></returns>
+        private JwtOptions GetOption()
         {
             return options.Value;
         }

@@ -74,7 +74,7 @@ namespace ServerAPI.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpPost("login")]
-        public async Task<ActionResult<string>> UserLogInAsync([FromBody]UserLogInModel logInModel)
+        public async Task<IActionResult> UserLogInAsync([FromBody]UserLogInModel logInModel)
         {
             var user = await userManager.FindUserAsync(logInModel.Email, logInModel.Password);
             //если юзер не найден , то ответ 400
@@ -89,8 +89,8 @@ namespace ServerAPI.Controllers
             new Claim(ClaimTypes.Email,user.Email)
             };
 
-            return await tokenGenerator.;
-
+            var token= await tokenGenerator.GenerateUserToken(user);
+            return Ok(token);
             //return await tokenGenerator.GenerateJwtToken(claims);
 
         }

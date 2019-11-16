@@ -51,6 +51,26 @@
             Класс отвечающий за генерацию токенов
             </summary>
         </member>
+        <member name="M:ServerAPI.Options.GlobalTokenGenerator.GenerateJwtToken(System.Collections.Generic.List{System.Security.Claims.Claim})">
+            <summary>
+            Генерирует jwt токен
+            </summary>
+            <param name="userclaims"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ServerAPI.Options.GlobalTokenGenerator.GenerateUserToken(ServiceLayer.Models.User)">
+            <summary>
+            Генерирует токены выдаваемые юзеру
+            </summary>
+            <param name="user">Модель представляющая пользователя</param>
+            <returns></returns>
+        </member>
+        <member name="M:ServerAPI.Options.GlobalTokenGenerator.GenerateRefreshToken">
+            <summary>
+            Генерация токена обновления
+            </summary>
+            <returns></returns>
+        </member>
         <member name="T:ServerAPI.Options.JWTModel">
             <summary>
             Класс возрающий токен и прочую инфу
