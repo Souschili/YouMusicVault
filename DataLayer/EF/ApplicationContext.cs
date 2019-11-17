@@ -12,6 +12,10 @@ namespace DataLayer.EF
         /// Таблица пользователей приложения
         /// </summary>
         public DbSet<User> User { get; set; }
+        /// <summary>
+        /// Таблица токенов доступа
+        /// </summary>
+        public DbSet<UserToken> userTokens { get; set; }
 
         /// <summary>
         /// Конструктор класса

@@ -53,6 +53,11 @@
             Таблица пользователей приложения
             </summary>
         </member>
+        <member name="P:DataLayer.EF.ApplicationContext.userTokens">
+            <summary>
+            Таблица токенов доступа
+            </summary>
+        </member>
         <member name="M:DataLayer.EF.ApplicationContext.#ctor(Microsoft.EntityFrameworkCore.DbContextOptions{DataLayer.EF.ApplicationContext})">
             <summary>
             Конструктор класса

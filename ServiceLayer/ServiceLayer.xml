@@ -39,6 +39,56 @@
             Дата регистрации
             </summary>
         </member>
+        <member name="P:ServiceLayer.Models.User.LastVisit">
+            <summary>
+            Дата последнего визита
+            </summary>
+        </member>
+        <member name="T:ServiceLayer.Models.UserRefreshToken">
+            <summary>
+            Класс токенов обновления  пользователей
+            </summary>
+        </member>
+        <member name="P:ServiceLayer.Models.UserRefreshToken.IsCalled">
+            <summary>
+            Использовался ли токен обновления
+            </summary>
+        </member>
+        <member name="P:ServiceLayer.Models.UserRefreshToken.CreatedTime">
+            <summary>
+            Дата создания токена
+            </summary>
+        </member>
+        <member name="P:ServiceLayer.Models.UserRefreshToken.CallTime">
+            <summary>
+            Дата срабатывания токена обновления
+            </summary>
+        </member>
+        <member name="P:ServiceLayer.Models.UserToken.Token">
+            <summary>
+            Токен доступа юзера
+            </summary>
+        </member>
+        <member name="P:ServiceLayer.Models.UserToken.IsActive">
+            <summary>
+            Активен или устарел
+            </summary>
+        </member>
+        <member name="P:ServiceLayer.Models.UserToken.Created">
+            <summary>
+            Дата создания
+            </summary>
+        </member>
+        <member name="P:ServiceLayer.Models.UserToken.Refresh">
+            <summary>
+            Список токенов обновления для данного юзера
+            </summary>
+        </member>
+        <member name="P:ServiceLayer.Models.UserToken.User">
+            <summary>
+            Внешний ключ из таблицы юзеры
+            </summary>
+        </member>
         <member name="T:ServiceLayer.Services.IUserManager">
             <summary>
             Интерфейс для поиска и фильтрации юзеров
