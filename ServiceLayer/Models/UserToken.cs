@@ -26,6 +26,7 @@ namespace ServiceLayer.Models
         /// <summary>
         /// Список токенов обновления для данного юзера
         /// </summary>
+        [ForeignKey("JwtID")]
         public List<UserRefreshToken> Refresh { get; set; }
         /// <summary>
         /// Внешний ключ из таблицы юзеры

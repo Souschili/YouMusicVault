@@ -4,14 +4,16 @@ using DataLayer.EF;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace ServerAPI.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    partial class ApplicationContextModelSnapshot : ModelSnapshot
+    [Migration("20191117002733_Third")]
+    partial class Third
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -60,15 +62,15 @@ namespace ServerAPI.Migrations
 
                     b.Property<bool>("IsCalled");
 
-                    b.Property<int?>("JwtID");
-
                     b.Property<string>("RefreshToken");
+
+                    b.Property<int?>("UserTokenId");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("JwtID");
+                    b.HasIndex("UserTokenId");
 
-                    b.ToTable("refreshTokens");
+                    b.ToTable("UserRefreshToken");
                 });
 
             modelBuilder.Entity("ServiceLayer.Models.UserToken", b =>
@@ -96,7 +98,7 @@ namespace ServerAPI.Migrations
                 {
                     b.HasOne("ServiceLayer.Models.UserToken")
                         .WithMany("Refresh")
-                        .HasForeignKey("JwtID");
+                        .HasForeignKey("UserTokenId");
                 });
 
             modelBuilder.Entity("ServiceLayer.Models.UserToken", b =>
