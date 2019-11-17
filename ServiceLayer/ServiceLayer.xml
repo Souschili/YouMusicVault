@@ -4,6 +4,11 @@
         <name>ServiceLayer</name>
     </assembly>
     <members>
+        <member name="T:ServiceLayer.Models.JWTModel">
+            <summary>
+            Класс возрающий токен и прочую инфу
+            </summary>
+        </member>
         <member name="T:ServiceLayer.Models.User">
             <summary>
             Класс представляющий пользователей

@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace ServerAPI.Options
+﻿namespace ServiceLayer.Models
 {
     /// <summary>
     /// Класс возрающий токен и прочую инфу

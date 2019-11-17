@@ -77,10 +77,5 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="T:ServerAPI.Options.JWTModel">
-            <summary>
-            Класс возрающий токен и прочую инфу
-            </summary>
-        </member>
     </members>
 </doc>
