@@ -11,7 +11,7 @@ namespace ServiceLayer.Services
     /// </summary>
     public class UserManager : IUserManager
     {
-        
+
         private readonly DbContext context;
 
 
@@ -65,7 +65,7 @@ namespace ServiceLayer.Services
                 await context.SaveChangesAsync();
                 return true;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 return false;
             }

@@ -2,11 +2,13 @@
 using Microsoft.EntityFrameworkCore;
 using ServiceLayer.Models;
 using ServiceLayer.Services;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace DataLayer.Data
 {
+    [Obsolete("Класс устарел и не актуален используйте DbContext для работы с БД")]
     /// <summary>
     /// Класс репозиторий для работы с бд
     /// </summary>

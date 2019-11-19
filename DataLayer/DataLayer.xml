@@ -4,11 +4,6 @@
         <name>DataLayer</name>
     </assembly>
     <members>
-        <member name="T:DataLayer.Data.MusicRepository">
-            <summary>
-            Класс репозиторий для работы с бд
-            </summary>
-        </member>
         <member name="M:DataLayer.Data.MusicRepository.#ctor(DataLayer.EF.ApplicationContext)">
             <summary>
             Конструктор класса 
