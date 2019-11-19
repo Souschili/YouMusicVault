@@ -6,6 +6,6 @@ namespace ServiceLayer.Services
 {
     public interface ITokenManager
     {
-        Task AddToken(JWTModel model);
+        Task<bool> AddToken(User user,JWTModel model);
     }
 }

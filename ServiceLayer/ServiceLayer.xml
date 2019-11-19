@@ -127,6 +127,14 @@
             <param name="password">Пароль</param>
             <returns></returns>
         </member>
+        <member name="M:ServiceLayer.Services.TokenManager.AddToken(ServiceLayer.Models.User,ServiceLayer.Models.JWTModel)">
+            <summary>
+            Вписываем сгенерированые токены в таблицу
+            </summary>
+            <param name="user">текущий юзер</param>
+            <param name="model">Пользовательские токены</param>
+            <returns></returns>
+        </member>
         <member name="T:ServiceLayer.Services.UserManager">
             <summary>
             Класс по работе с пользователями

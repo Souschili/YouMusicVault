@@ -82,14 +82,20 @@ namespace ServerAPI.Controllers
             {
                 return BadRequest("Can't find this user!");
             }
+            #region//удалить
             // поиск юзера в базе если удачно выдать токен
             //тестовый набор клаймов, надо добавить таблицу клаймов
             var claims = new List<Claim> {
             new Claim(ClaimTypes.Role,user.Status),
             new Claim(ClaimTypes.Email,user.Email)
             };
+            #endregion 
 
-            var token= await tokenGenerator.GenerateUserToken(user);
+
+            var token = await tokenGenerator.GenerateUserToken(user);
+            //пишем полученные токены в таблицу
+
+
             return Ok(token);
             //return await tokenGenerator.GenerateJwtToken(claims);
 

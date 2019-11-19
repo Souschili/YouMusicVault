@@ -12,7 +12,7 @@ namespace DataLayer.Data
     /// <summary>
     /// Класс репозиторий для работы с бд
     /// </summary>
-    public class MusicRepository : IUserData,ITokenData
+    public class MusicRepository : IUserData
     {
         private ApplicationContext context;
 
