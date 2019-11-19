@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ServerAPI.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20191117003642_pre-final")]
-    partial class prefinal
+    [Migration("20191119235108_Test")]
+    partial class Test
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -56,7 +56,7 @@ namespace ServerAPI.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<DateTime>("CallTime");
+                    b.Property<DateTime?>("CallTime");
 
                     b.Property<DateTime>("CreatedTime");
 

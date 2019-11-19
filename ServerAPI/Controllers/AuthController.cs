@@ -23,11 +23,13 @@ namespace ServerAPI.Controllers
     {
         private readonly IUserManager userManager;
         private readonly ITokenGenerator tokenGenerator;
+        private readonly ITokenManager tokenManager;
 
-        public AuthController(IUserManager manager, ITokenGenerator generator)
+        public AuthController(IUserManager manager, ITokenGenerator generator, ITokenManager token)
         {
             userManager = manager;
             tokenGenerator = generator;
+            tokenManager = token;
         }
 
         /// <summary>
@@ -78,26 +80,17 @@ namespace ServerAPI.Controllers
         {
             var user = await userManager.FindUserAsync(logInModel.Email, logInModel.Password);
             //если юзер не найден , то ответ 400
-            if(user==null)
+            if (user == null)
             {
                 return BadRequest("Can't find this user!");
             }
-            #region//удалить
-            // поиск юзера в базе если удачно выдать токен
-            //тестовый набор клаймов, надо добавить таблицу клаймов
-            var claims = new List<Claim> {
-            new Claim(ClaimTypes.Role,user.Status),
-            new Claim(ClaimTypes.Email,user.Email)
-            };
-            #endregion 
-
 
             var token = await tokenGenerator.GenerateUserToken(user);
             //пишем полученные токены в таблицу
-
+            var rez = await tokenManager.AddToken(user, token);
 
             return Ok(token);
-            //return await tokenGenerator.GenerateJwtToken(claims);
+
 
         }
 

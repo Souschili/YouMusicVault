@@ -7,7 +7,7 @@ using ServiceLayer.Models;
 
 namespace ServiceLayer.Services
 {
-    class TokenManager : ITokenManager
+    public class TokenManager : ITokenManager
     {
         private readonly DbContext context;
         public TokenManager(DbContext db)
@@ -21,25 +21,31 @@ namespace ServiceLayer.Services
         /// <param name="user">текущий юзер</param>
         /// <param name="model">Пользовательские токены</param>
         /// <returns></returns>
-        public async Task<bool> AddToken(User user,JWTModel model)
+        public async Task<bool> AddToken(User user, JWTModel model)
         {
-            var utoken = new UserToken
+            //создаем обьект аксес токена
+            var jwt_token = new UserToken
             {
+                Created = DateTime.Now,
+                IsActive = true,
                 Token = model.JwtToken,
-                IsActive=true,
-                Created=DateTime.Now,
+                User = user
             };
-            utoken.User = user;
 
-            //вписываем рефреш токен
-            utoken.Refresh.Add(new UserRefreshToken
+            //создаем объект рефреш токена
+            var refresh_token = new UserRefreshToken
             {
+                CreatedTime = DateTime.Now,
                 RefreshToken = model.RefreshToken,
-                IsCalled = false,
-                CreatedTime=DateTime.Now,
-            });
+                CallTime=null
+            };
 
-            await context.Set<UserToken>().AddAsync(utoken);
+            //добавляем токен обновления
+            jwt_token.Refresh.Add(refresh_token);
+
+            //производим запись в таблицу
+            await context.Set<UserToken>().AddAsync(jwt_token);
+            await context.SaveChangesAsync();
 
             return true;
         }

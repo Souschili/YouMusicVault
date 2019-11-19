@@ -12,6 +12,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using ServerAPI.Options;
+using ServiceLayer.Models;
 using ServiceLayer.Services;
 
 namespace ServerAPI
@@ -32,6 +33,7 @@ namespace ServerAPI
             services.AddTransient<ITokenGenerator,GlobalTokenGenerator>();
             services.AddSingleton<JwtOptions>(); 
             services.AddScoped<IUserManager, UserManager>();
+            services.AddScoped<ITokenManager,TokenManager>();
             //вызов класса БД как ресурса
             services.AddScoped<DbContext,ApplicationContext>();
 

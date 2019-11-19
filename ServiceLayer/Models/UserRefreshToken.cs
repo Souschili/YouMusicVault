@@ -16,7 +16,7 @@ namespace ServiceLayer.Models
         /// <summary>
         /// Использовался ли токен обновления
         /// </summary>
-        public bool IsCalled { get; set; }
+        public bool IsCalled { get; set; } = false;
         /// <summary>
         /// Дата создания токена
         /// </summary>
@@ -24,6 +24,6 @@ namespace ServiceLayer.Models
         /// <summary>
         /// Дата срабатывания токена обновления
         /// </summary>
-        public DateTime CallTime { get; set; }
+        public DateTime? CallTime { get; set; }
     }
 }
