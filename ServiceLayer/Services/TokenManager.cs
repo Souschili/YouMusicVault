@@ -8,7 +8,7 @@ namespace ServiceLayer.Services
 {
     class TokenManager : ITokenManager
     {
-        private 
+         
         public Task AddToken(JWTModel model)
         {
             throw new NotImplementedException();
