@@ -30,10 +30,14 @@ namespace ServerAPI
         {
             //зависимости
             services.AddTransient<ITokenGenerator,GlobalTokenGenerator>();
-            services.AddSingleton<JwtOptions>();
-
-            services.AddTransient<IUserData, MusicRepository>();
+            services.AddSingleton<JwtOptions>(); 
             services.AddScoped<IUserManager, UserManager>();
+            //вызов класса БД как ресурса
+            services.AddScoped<ApplicationContext>();
+
+            // удалить как не актуальный
+            services.AddTransient<IUserData, MusicRepository>();
+           
 
             // дергаем настройки из аппсетинга 
             services.AddOptions();
