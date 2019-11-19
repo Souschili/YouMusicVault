@@ -11,9 +11,9 @@ namespace ServiceLayer.Services
     /// </summary>
     public class UserManager : IUserManager
     {
-        //private IUserData context;
-        private DbContext context;
         
+        private readonly DbContext context;
+
 
         public UserManager(DbContext data)
         {
@@ -21,43 +21,57 @@ namespace ServiceLayer.Services
         }
 
         /// <summary>
-        /// Вывести всех пользователей в базе
+        /// Возращает список всех юзеров
         /// </summary>
-        /// <returns>Список пользователей</returns>
+        /// <returns>Список всех пользователей</returns>
         public async Task<List<User>> FindAllUsersAsync()
         {
-            return await context.GetAllAsync();
+            return await context.Set<User>().ToListAsync();
         }
+
         /// <summary>
-        /// Поиск юзера по параметрам
+        /// Поиск одной записи в таблице юзеров 
         /// </summary>
         /// <param name="login">Почтовый адресс</param>
         /// <param name="password">Пароль</param>
-        /// <returns>Обьект пользователь</returns>
+        /// <returns></returns>
         public async Task<User> FindUserAsync(string login, string password)
         {
-            return await context.FindUserAsync(login, password);
+            var user = await context.Set<User>().FirstOrDefaultAsync(x => x.Email == login && x.Password == password);
+            return user;
         }
 
         /// <summary>
-        /// Найти нового юзера по никнейму
+        /// Поиск юзера по никнейму
         /// </summary>
-        /// <param name="name">Никнейм юзера</param>
-        /// <returns>Возращает пользователя </returns>
+        /// <param name="name">Никнейм</param>
+        /// <returns>Возращает обьект юзер</returns>
         public async Task<User> FindUserByNicknameAsync(string name)
         {
-            return await context.FindByNickNameAsync(name);
+            return await context.Set<User>().FirstOrDefaultAsync(x => x.Nickname == name);
         }
 
         /// <summary>
-        /// Метод для регистрации новых юзеров
+        /// Запись нового юзера в таблицу
         /// </summary>
-        /// <param name="user"></param>
-        /// <returns>Результат попытки добавления нового юзера</returns>
+        /// <param name="user">Обьект типа User</param>
+        /// <returns></returns>
         public async Task<bool> RegisterUserAsync(User user)
         {
-            await context.AddUserAsync(user);
-            return true;
+            //TODO вернуть класс модели ошибки для информативности
+            try
+            {
+                await context.Set<User>().AddAsync(user);
+                await context.SaveChangesAsync();
+                return true;
+            }
+            catch(Exception ex)
+            {
+                return false;
+            }
+
+
+
         }
     }
 }

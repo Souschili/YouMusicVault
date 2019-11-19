@@ -134,31 +134,31 @@
         </member>
         <member name="M:ServiceLayer.Services.UserManager.FindAllUsersAsync">
             <summary>
-            Вывести всех пользователей в базе
+            Возращает список всех юзеров
             </summary>
-            <returns>Список пользователей</returns>
+            <returns>Список всех пользователей</returns>
         </member>
         <member name="M:ServiceLayer.Services.UserManager.FindUserAsync(System.String,System.String)">
             <summary>
-            Поиск юзера по параметрам
+            Поиск одной записи в таблице юзеров 
             </summary>
             <param name="login">Почтовый адресс</param>
             <param name="password">Пароль</param>
-            <returns>Обьект пользователь</returns>
+            <returns></returns>
         </member>
         <member name="M:ServiceLayer.Services.UserManager.FindUserByNicknameAsync(System.String)">
             <summary>
-            Найти нового юзера по никнейму
+            Поиск юзера по никнейму
             </summary>
-            <param name="name">Никнейм юзера</param>
-            <returns>Возращает пользователя </returns>
+            <param name="name">Никнейм</param>
+            <returns>Возращает обьект юзер</returns>
         </member>
         <member name="M:ServiceLayer.Services.UserManager.RegisterUserAsync(ServiceLayer.Models.User)">
             <summary>
-            Метод для регистрации новых юзеров
+            Запись нового юзера в таблицу
             </summary>
-            <param name="user"></param>
-            <returns>Результат попытки добавления нового юзера</returns>
+            <param name="user">Обьект типа User</param>
+            <returns></returns>
         </member>
         <member name="T:ServiceLayer.ViewModels.UserRegistrationModel">
             <summary>
