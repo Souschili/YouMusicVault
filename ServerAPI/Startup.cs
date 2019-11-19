@@ -33,7 +33,7 @@ namespace ServerAPI
             services.AddSingleton<JwtOptions>(); 
             services.AddScoped<IUserManager, UserManager>();
             //вызов класса БД как ресурса
-            services.AddScoped<ApplicationContext>();
+            services.AddScoped<DbContext,ApplicationContext>();
 
             // удалить как не актуальный
             services.AddTransient<IUserData, MusicRepository>();

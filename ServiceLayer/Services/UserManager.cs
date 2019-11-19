@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 using ServiceLayer.Models;
 
 namespace ServiceLayer.Services
@@ -10,9 +11,11 @@ namespace ServiceLayer.Services
     /// </summary>
     public class UserManager : IUserManager
     {
-        private IUserData context;
+        //private IUserData context;
+        private DbContext context;
+        
 
-        public UserManager(IUserData data)
+        public UserManager(DbContext data)
         {
             context = data;
         }
